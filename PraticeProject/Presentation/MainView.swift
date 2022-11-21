@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import UIPilot
 
 struct MainView: View {
+    
+    private let pilot: UIPilot<AppRoute>
+    
+    init() {
+        pilot = .init(initial: .List)
+    }
+    
     var body: some View {
         TabView {
             Home()
@@ -16,7 +24,7 @@ struct MainView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
-            TodoList()
+            TodoListView(viewModel: TodoListViewModel(pilot: pilot))
                 .tag("TodoList")
                 .tabItem {
                     Image(systemName: "list.bullet")
@@ -34,7 +42,7 @@ struct MainView: View {
             appearance.backgroundColor = UIColor(Color.orange.opacity(0.2))
             
             UITabBar.appearance().standardAppearance = appearance
-//            UITabBar.appearance().scrollEdgeAppearance = appearance
+            //            UITabBar.appearance().scrollEdgeAppearance = appearance
         }
     }
 }

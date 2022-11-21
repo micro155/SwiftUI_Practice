@@ -7,12 +7,11 @@
 
 import Foundation
 
-
 class Memo : Identifiable {
     var title: String
     var content: String
 //    var date: Date
-    
+
     init(title: String, content: String) {
         self.title = title
         self.content = content

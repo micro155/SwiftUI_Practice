@@ -7,12 +7,19 @@
 
 import Foundation
 
-class Todo : Identifiable {
+struct Todo {
+    let id: Int64
     var title: String
+    var date: Date
     var content: String
-    
-    init(title: String, content: String) {
-        self.title = title
-        self.content = content
-    }
 }
+
+//class Todo : Identifiable {
+//    var title: String
+//    var content: String
+//
+//    init(title: String, content: String) {
+//        self.title = title
+//        self.content = content
+//    }
+//}

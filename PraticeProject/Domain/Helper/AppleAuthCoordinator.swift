@@ -112,9 +112,10 @@ extension AppleAuthCoordinator: ASAuthorizationControllerDelegate {
                 // User is signed in to Firebase with Apple.
                 // ...
                 print("isloginSuccess called 1")
-                UserDefaults.standard.setValue(true, forKey: "isLogin")
+//                UserDefaults.standard.setValue(true, forKey: "isLogin")
             }
             print("isloginSuccess called 2, appleCredential Info : \(appleIDCredential.realUserStatus), email: \(String(describing: appleIDCredential.email)), state: \(String(describing: appleIDCredential.state)), fullName: \(String(describing: appleIDCredential.fullName!)), authorization_code: \(String(decoding: appleIDCredential.authorizationCode!, as: UTF8.self)), id_token_string: \(idTokenString)")
+            UserDefaults.standard.setValue(true, forKey: "isLogin")
         }
         print("isloginSuccess called 3")
     }

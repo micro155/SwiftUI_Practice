@@ -16,6 +16,8 @@ struct LoginView: View {
         
         NavigationView {
             NavigationLink(destination: MainView(), isActive: $isLogin) {
+//            NavigationLink("MainView") {
+//                MainView()
                 Button(action: {
                     //            print("Apple Login Button Clicked!")
                     //                isLogin = true
@@ -45,13 +47,13 @@ struct LoginView: View {
         appleLoginCoordinator = AppleAuthCoordinator(window: window)
         appleLoginCoordinator?.startAppleLogin()
         
-//        isLogin = UserDefaults.standard.bool(forKey: "isLogin")
-        isLogin = false
+        isLogin = UserDefaults.standard.bool(forKey: "isLogin")
+//        isLogin = false
     }
 }
 
-//struct LoginView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LoginView()
-//    }
-//}
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
+    }
+}

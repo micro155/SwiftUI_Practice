@@ -13,9 +13,9 @@ struct Home: View {
     
     init()
     {
-        for i in 1...15 {
-            list.append(Todo(title: "title\(i)", content: "Content"))
-        }
+//        for i in 1...15 {
+//            list.append(Todo(id: 1, title: "title\(i)", date: Date(), content: "Content"))
+//        }
     }
     
     var body: some View {
@@ -25,13 +25,13 @@ struct Home: View {
                 .font(.system(size: 30, weight: .bold))
                 .padding(5)
             
-            List(list) { item in
-                HStack {
-                    Text("\(item.title)")
-                    Spacer()
-                    Text("\(item.content)")
-                }
-            }.listStyle(.plain)
+//            List(list) { item in
+//                HStack {
+//                    Text("\(item.title)")
+//                    Spacer()
+//                    Text("\(item.content)")
+//                }
+//            }.listStyle(.plain)
             
         }.background(Color.white)
         

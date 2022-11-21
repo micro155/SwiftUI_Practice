@@ -21,6 +21,6 @@ struct TodoItem: View {
 
 struct TodoItem_Previews: PreviewProvider {
     static var previews: some View {
-        TodoItem(Todo(title: "test", content: "testString"))
+        TodoItem(Todo(id: 1, title: "test", date: Date(), content: "testString"))
     }
 }
