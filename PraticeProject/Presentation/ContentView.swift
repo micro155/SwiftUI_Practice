@@ -6,11 +6,36 @@
 //
 
 import SwiftUI
+import UIPilot
+
 
 struct ContentView: View {
+    
+    private let pilot: UIPilot<AppRoute>
+    
+    init() {
+        pilot = .init(initial: .List)
+    }
+    
     var body: some View {
-//        MainView()
-        LoginView()
+        Group {
+            UIPilotHost(pilot) { route in
+                switch route {
+                case .List:
+                    
+                    TodoListView(viewModel: TodoListViewModel(pilot: pilot))
+                    
+                case .Insert:
+                    
+                    TodoInsertView(viewModel: TodoInsertViewModel(pilot: pilot))
+                    
+                case .Detail(let id):
+                    
+                    TodoDetailView(viewModel: TodoDetailViewModel(id: id, pilot: pilot))
+                    
+                }
+            }
+        }
     }
 }
 

@@ -11,18 +11,20 @@ import UIPilot
 class TodoInsertViewModel: ObservableObject {
     
     @Published var title: String = ""
-        @Published var startDate: Date = Date()
-
-        private let appPilot: UIPilot<AppRoute>
-
-        init(pilot: UIPilot<AppRoute>) {
-            self.appPilot = pilot
+    @Published var startDate: Date = Date()
+    @Published var content: String = ""
+    
+    private let appPilot: UIPilot<AppRoute>
+    
+    init(pilot: UIPilot<AppRoute>) {
+        self.appPilot = pilot
+    }
+    
+    func onAddButtonClick() {
+        let id = TodoDataStore.shared.insert(title: title, date: startDate, content: content)
+        if id != nil {
+            print("id info \(id)")
+            appPilot.pop()
         }
-
-        func onAddButtonClick() {
-            let id = TodoDataStore.shared.insert(title: title, date: startDate)
-            if id != nil {
-               appPilot.pop()
-            }
-        }
+    }
 }

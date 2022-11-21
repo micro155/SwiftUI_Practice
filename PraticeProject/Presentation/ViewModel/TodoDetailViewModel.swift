@@ -26,7 +26,7 @@ class TodoDetailViewModel: ObservableObject {
     }
     
     func getTodo() {
-        todo = TodoDataStore.shared.findTask(todoId: id)
+        todo = TodoDataStore.shared.findTodo(todoId: id)
         todoTitle = todo?.title ?? ""
         todoDate = todo?.date ?? Date()
         content = todo?.content ?? ""

@@ -18,13 +18,18 @@ struct TodoListView: View {
                     .font(.title.bold())
 
                 if viewModel.allTodo.isEmpty {
-                    Text("You have no task.")
+                    Text("You have no todo.")
                 } else {
                     List {
                         ForEach(viewModel.allTodo, id: \.id) { todo in
                             Text(todo.title)
+                                .onTapGesture {
+                                    viewModel.appPilot.push(.Detail(id: todo.id))
+                                }
+                            }
+                            .onDelete(perform: viewModel.deleteTodo(at:))
                         }
-                    }
+                    
                     .listStyle(.plain)
                     .onAppear {
                         UITableView.appearance().backgroundColor = .clear

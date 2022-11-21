@@ -61,14 +61,17 @@ class TodoDataStore {
         }
     }
     
-    func insert(title: String, date: Date) -> Int64? {
+    func insert(title: String, date: Date, content: String) -> Int64? {
         guard let database = db else { return nil }
 
         let insert = todos.insert(self.title <- title,
                                   self.date <- date,
                                   self.content <- content)
+        
+        print("insert result : \(insert)")
         do {
             let rowID = try database.run(insert)
+            print("rowID result : \(rowID)")
             return rowID
         } catch {
             print(error)
@@ -77,11 +80,18 @@ class TodoDataStore {
     }
     
     func getAllTodos() -> [Todo] {
+        
+        print("getAllTodos start")
         var todos: [Todo] = []
-        guard let database = db else { return [] }
+        guard let database = db else {
+            
+            print("getAllTodos error")
+            return [] }
         
         do {
+            print("getAllTodos check before : \(self.todos)")
             for todo in try database.prepare(self.todos) {
+                print("getAllTodos check")
                 todos.append(Todo(id: todo[id], title: todo[title], date: todo[date], content: todo[content]))
             }
         } catch {
@@ -91,7 +101,7 @@ class TodoDataStore {
         return todos
     }
     
-    func findTask(todoId: Int64) -> Todo? {
+    func findTodo(todoId: Int64) -> Todo? {
         var todo: Todo = Todo(id: todoId, title: "", date: Date(), content: "")
         guard let database = db else { return nil }
 

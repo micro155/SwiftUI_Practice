@@ -7,33 +7,28 @@
 
 import SwiftUI
 
-struct TaskDetailView: View {
+struct TodoDetailView: View {
 
     @ObservedObject var viewModel: TodoDetailViewModel
-    var status = ["Completed", "Incomplete"]
 
     var body: some View {
         VStack(spacing: 20) {
             HStack(spacing: 20) {
-                Text("Task Name : ")
-                TextField("Task Name", text: $viewModel.todoTitle)
+                Text("Todo Title : ")
+                TextField("Todo Title", text: $viewModel.todoTitle)
                     .textFieldStyle(.roundedBorder)
             }
 
             HStack(spacing: 20) {
-                Text("Approx Date :")
+                Text("Date :")
                 DatePicker("", selection: $viewModel.todoDate)
                 Spacer()
             }
 
             HStack {
-                Text("Status        :   ")
-                Picker("What is your favorite color?", selection: $viewModel.content) {
-                    ForEach(status, id: \.self) {
-                        Text($0)
-                    }
-                }
-                .pickerStyle(.segmented)
+                Text("content        :   ")
+                TextField("Todo Content", text: $viewModel.content)
+                    .textFieldStyle(.roundedBorder)
                 Spacer()
             }
 

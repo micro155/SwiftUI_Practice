@@ -14,24 +14,26 @@ class TodoListViewModel: ObservableObject {
 
         init(pilot: UIPilot<AppRoute>) {
             self.appPilot = pilot
+            getTodoList()
         }
 
         func onAddButtonClick() {
             appPilot.push(.Insert)
         }
     
-    func deleteTask(at indexSet: IndexSet) {
+    func deleteTodo(at indexSet: IndexSet) {
         let id = indexSet.map { self.allTodo[$0].id }.first
         if let id = id {
             let delete = TodoDataStore.shared.delete(id: id)
             if delete {
-                getTaskList()
+                getTodoList()
             }
         }
     }
     
-    func getTaskList() {
+    func getTodoList() {
         allTodo = TodoDataStore.shared.getAllTodos()
+        print("allTodos : \(allTodo)")
     }
 }
 

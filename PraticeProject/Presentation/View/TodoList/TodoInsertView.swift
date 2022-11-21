@@ -15,7 +15,7 @@ struct TodoInsertView: View {
         VStack {
             HStack(spacing: 20) {
                 Text("Todo title : ")
-                TextField("Task Name", text: $viewModel.title)
+                TextField("Todo title", text: $viewModel.title)
                     .textFieldStyle(.roundedBorder)
             }
             .padding()
@@ -24,6 +24,13 @@ struct TodoInsertView: View {
                 Text("Start Date  :")
                 DatePicker("", selection: $viewModel.startDate)
                 Spacer()
+            }
+            .padding()
+            
+            HStack(spacing: 20) {
+                Text("Todo content : ")
+                TextField("Todo content", text: $viewModel.content)
+                    .textFieldStyle(.roundedBorder)
             }
             .padding()
 
