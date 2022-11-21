@@ -8,37 +8,40 @@
 import SwiftUI
 
 struct TodoListView: View {
-
+    
     @ObservedObject var viewModel: TodoListViewModel
-
+    
     var body: some View {
         ZStack {
             VStack(spacing: 30) {
-                Text("Welcome !!!")
+                Text("Todo List")
                     .font(.title.bold())
-
-                if viewModel.allTodo.isEmpty {
-                    Text("You have no todo.")
-                } else {
-                    List {
+                
+                
+                List {
+                    if viewModel.allTodo.isEmpty {
+                        Text("Todo 목록이 없습니다.")
+                    } else {
                         ForEach(viewModel.allTodo, id: \.id) { todo in
                             Text(todo.title)
                                 .onTapGesture {
                                     viewModel.appPilot.push(.Detail(id: todo.id))
                                 }
-                            }
-                            .onDelete(perform: viewModel.deleteTodo(at:))
                         }
-                    
-                    .listStyle(.plain)
-                    .onAppear {
-                        UITableView.appearance().backgroundColor = .clear
-                        UITableViewCell.appearance().selectionStyle = .none
-                        UITableView.appearance().showsVerticalScrollIndicator = false
+                        .onDelete(perform: viewModel.deleteTodo(at:))
                     }
+                    
+                }
+                
+                .listStyle(.plain)
+                .onAppear {
+                    viewModel.getTodoList()
+                    UITableView.appearance().backgroundColor = .clear
+                    UITableViewCell.appearance().selectionStyle = .none
+                    UITableView.appearance().showsVerticalScrollIndicator = false
                 }
             }
-
+            
             VStack {
                 Spacer()
                 HStack {

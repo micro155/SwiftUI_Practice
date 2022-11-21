@@ -89,9 +89,7 @@ class TodoDataStore {
             return [] }
         
         do {
-            print("getAllTodos check before : \(self.todos)")
             for todo in try database.prepare(self.todos) {
-                print("getAllTodos check")
                 todos.append(Todo(id: todo[id], title: todo[title], date: todo[date], content: todo[content]))
             }
         } catch {

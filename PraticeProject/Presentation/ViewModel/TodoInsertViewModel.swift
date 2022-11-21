@@ -23,7 +23,7 @@ class TodoInsertViewModel: ObservableObject {
     func onAddButtonClick() {
         let id = TodoDataStore.shared.insert(title: title, date: startDate, content: content)
         if id != nil {
-            print("id info \(id)")
+            TodoDataStore.shared.getAllTodos()
             appPilot.pop()
         }
     }
