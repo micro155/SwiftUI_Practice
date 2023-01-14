@@ -14,9 +14,6 @@ struct TodoListView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 30) {
-                Text("Todo List")
-                    .font(.title.bold())
-                
                 
                 List {
                     if viewModel.allTodo.isEmpty {
@@ -61,8 +58,7 @@ struct TodoListView: View {
                     .padding()
                 }
             }
-        }
-        .navigationBarHidden(true)
+        }.navigationTitle("Todo List")
     }
 }
 
